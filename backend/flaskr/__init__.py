@@ -93,22 +93,19 @@ def create_app(test_config=None):
 
     TEST: When you click the trash icon next to a question, the question will be removed.
     This removal will persist in the database and when you refresh the page.
-    """
-    @app.route('/questions/<int:id>/', methods=['DELETE'])
-    def delete_questions(id):
-        delete_question = Question.query.get(Question.id==id).one_or_none()
-        if delete_question < 0:
+    """    
+    @app.route('/questions/<int:id>', methods=['DELETE'])
+    def delete_question(id):
+        question = Question.query.filter(Question.id==id).one_or_none()
+        all_questions = Question.query.all()
+        
+        if (question is None):
             abort(404)
-
         else:
-            db.session.delete(delete_question)
-            
-        questions = Question.query.all()
-
+            db.session.delete(question)
         return jsonify({
             'success': True,
-            'deleted_question': delete_question,
-            'total_question': len(questions)
+            'total_question': len(all_questions)
         })
     """
     @TODO:
