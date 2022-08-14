@@ -107,13 +107,13 @@ python test_flaskr.py
 
 ## ERROR HANDLING
 Errors are presented in json format:
-'''
+```
 {
     'success': False,
     'error' : 404,
     'message': 'page not found'
 }
-'''
+```
 The API will return These error messages when needed:
 404:Resource not Found, 400: Bad Request, 422: not Processable, 403: Forbidden, 500: Server Error
 
