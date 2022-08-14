@@ -126,7 +126,7 @@ General:
     Results are paginated in groups of 10.
 
 Sample: `curl http://127.0.0.1:5000/categories`
-'''
+```
     {
         "categories":
             {"1":"Science",
@@ -137,7 +137,7 @@ Sample: `curl http://127.0.0.1:5000/categories`
             "6":"Sports"},
         "success":true
     }
-'''
+```
 
 ### GET /questions?page=${int}'
 
@@ -150,23 +150,23 @@ General:
 Sample: `http://127.0.0.1:5000/questions?page=1`
 
 Return Body:
-    '''
+    ```
         {"category":{"1":"Science","2":"Art","3":"Geography","4":"History","5":"Entertainment","6":"Sports"},"current_question":[{"answer":"Agra","category":3,"difficulty":2,"id":1,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Apollo 13","category":5,"difficulty":4,"id":2,"question":"What movie earned Tom Hanks his third straight Oscar nomination, in 1996?"},{"answer":"Agra","category":3,"difficulty":2,"id":3,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":4,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Maya Angelou","category":4,"difficulty":2,"id":5,"question":"Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"},{"answer":"Agra","category":3,"difficulty":2,"id":6,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":7,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":8,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Muhammad Ali","category":4,"difficulty":1,"id":9,"question":"What boxer's original name is Cassius Clay?"},{"answer":"Brazil","category":6,"difficulty":3,"id":10,"question":"Which is the only team to play in every soccer World Cup tournament?"}],"success":true,"total_querstions":23}
-    '''
+    ```
 
 ## POST /questions
 
 General:
     Sends a post request in order to add a new question
     Request Body:
-    '''
+    ```
         "{
             'question': 'Choose a versatile language',
             'answer': 'python',
             'category': 4,
             'difficulty': 3
         }"
-    '''
+    ```
 Sample:
     `curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: application/json" -d '{"question":"what is the most vesatile language", "answer":"python", "category":"4", "difficulty":"3"}'`
 
@@ -175,7 +175,7 @@ Sample:
 General:
     Sends a post request in order to search for a specific question by search term
     Request Body:
-        '''
+        ```
             "{
                 'searchterm':'tom'
             }"
@@ -195,9 +195,9 @@ Sample:
     `http://127.0.0.1:5000/categories/3/questions`
 
 Return Body:
-    '''
+    ```
         {"category":"Geography","question":[{"answer":"Lake Victoria","category":3,"difficulty":2,"id":13,"question":"What is the largest lake in Africa?"},{"answer":"The Palace of Versailles","category":3,"difficulty":3,"id":14,"question":"In which royal palace would you find the Hall of Mirrors?"},{"answer":"Agra","category":3,"difficulty":2,"id":15,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":1,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":2,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":3,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":4,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":5,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":6,"question":"The Taj Mahal is located in which Indian city?"},{"answer":"Agra","category":3,"difficulty":2,"id":7,"question":"The Taj Mahal is located in which Indian city?"}],"success":true,"total_questions":12}
-    '''
+    ```
 
 ## POST /quizzes
 
@@ -205,7 +205,7 @@ General:
 
     Sends a post request in order to get the next question
     Request Body:
-        '''
+        ```
             {
                 "questions": [10, 6, 17]
                 'category': {
@@ -213,11 +213,11 @@ General:
                     'type': 'All'
                 }
             }
-        '''
+        ```
 Sample:
     `curl http://127.0.0.1:5000/quizzes -X POST -H "Content-Type: application/json" -d '{"category":{"type":"All","id":0}, "questions":[10, 6, 17]}'`
 
 Response Body:
-    '''
+    ```
         {"question":{"answer":"Alexander Fleming","category":1,"difficulty":3,"id":21,"question":"Who discovered penicillin?"},"success":true}
-    '''
+    ```
