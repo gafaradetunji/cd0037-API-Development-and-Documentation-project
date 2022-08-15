@@ -156,7 +156,7 @@ def create_app(test_config=None):
         search = body.get('searchTerm', None)
 
         if search is None:
-            abort(404)
+            abort(422)
 
         searched_questions = Question.query.order_by(Question.id).filter(Question.question.ilike('%'+search+'%')).all()
 
@@ -164,10 +164,12 @@ def create_app(test_config=None):
 
         return jsonify({
             'success': True,
-            'current_question': current_question,
+            'questions': current_question,
             'total_questions': len(searched_questions),
             'current_category': None
         })
+
+    
     """
     @TODO:
     Create a GET endpoint to get questions based on category.
@@ -220,7 +222,7 @@ def create_app(test_config=None):
                 question = Question.query.order_by(change).filter(Question.id.notin_(prev_question)).first()
 
             else:
-                question = Question.query.order_by(Question.category == category_id).filter(change).filter(Question.id.notin_(prev_question)).first()
+                question = Question.query.filter(Question.category == category_id).order_by(change).filter(Question.id.notin_(prev_question)).first()
 
             if question is None:
                 return jsonify({'success': True})
