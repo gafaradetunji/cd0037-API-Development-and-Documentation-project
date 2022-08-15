@@ -50,8 +50,8 @@ def create_app(test_config=None):
             main[category.id] = category.type
 
         return jsonify({
-            'categories': main,
-            'success': True
+            'success': True,
+            'categories': main
         })
 
     """
@@ -83,9 +83,10 @@ def create_app(test_config=None):
 
         return jsonify({
             'success': True,
-            'current_question': current_question,
-            'total_querstions': len(questions),
-            'category': main,
+            'questions': current_question,
+            'totalQuestions': len(questions),
+            'categories': main,
+            'currentCategory': None
             })
     """
     @TODO:
@@ -148,7 +149,7 @@ def create_app(test_config=None):
     Try using the word "title" to start.
     """
     #worked
-    @app.route('/search', methods=['POST'])
+    @app.route('/questions/search', methods=['POST'])
     def search_questions():
         body = request.get_json()
 
@@ -188,9 +189,9 @@ def create_app(test_config=None):
 
         return jsonify({
             'success': True,
-            'question': current_question,
-            'category': category.type,
-            'total_questions': len(question)
+            'questions': current_question,
+            'total_questions': len(question),
+            'category': category.type
         })
     """
     @TODO:
@@ -208,8 +209,8 @@ def create_app(test_config=None):
     def get_quiz_questions():
         body = request.get_json()
 
-        prev_question = body.get('questions', None)
-        category = body.get('category', None)
+        prev_question = body.get('previous_questions', None)
+        category = body.get('quiz_category', None)
 
         category_id = category.get('id')
 

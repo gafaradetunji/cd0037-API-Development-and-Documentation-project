@@ -194,7 +194,7 @@ General:
         }"
         ```
 Sample:
-    `curl http://127.0.0.1:5000/search -X POST -H "Content-Type: application/json" -d '{"searchTerm":"tom"}'`
+    `curl http://127.0.0.1:5000/questions/search -X POST -H "Content-Type: application/json" -d '{"searchTerm":"tom"}'`
 
 Response Body:
   ```
