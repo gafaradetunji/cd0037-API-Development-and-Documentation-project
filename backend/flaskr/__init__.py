@@ -10,14 +10,15 @@ from models import setup_db, Question, Category, db
 
 QUESTIONS_PER_PAGE = 10
 def question_paginate(request, selection):
-    questions = request.args.get('questions', 1, type=int)
-    start = (questions - 1) * QUESTIONS_PER_PAGE
-    end = start + QUESTIONS_PER_PAGE
+    questions = request.args.get('questions', QUESTIONS_PER_PAGE, type=int)
+    limit = request.args.get('limit', 1, type=int)
+    
+    current_number = limit - 1
 
-    questions = [question.format() for question in selection]
-    current_question = questions[start:end]
+    current_questions =Question.query.order_by(Question.id).limit(questions).offset(current_number * questions).all()
 
-    return current_question
+    paginated_question = [current_question.format() for current_question in current_questions] 
+    return paginated_question
 
 def create_app(test_config=None):
     # create and configure the app
